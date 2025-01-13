@@ -7,6 +7,7 @@ dist/
 # Parcel cache
 .cache/
 .parcel-cache/
+.parcel-cache/*
 
 # Logs
 npm-debug.log*
