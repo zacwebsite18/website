@@ -1,38 +1,74 @@
-import React from 'react';
-import { Provider, defaultTheme, Tabs, TabList, TabPanels, Item, View, Heading, Footer, Image, Text } from '@adobe/react-spectrum';
-import Info from '@spectrum-icons/workflow/Info';
-import Mailbox from '@spectrum-icons/workflow/Mailbox';
-import logo from './images/logo.png'; // Import the logo
+import React, { useState, useEffect } from "react";
+import {
+  Provider,
+  defaultTheme,
+  Tabs,
+  TabList,
+  TabPanels,
+  Item,
+  View,
+  Heading,
+  Footer,
+  Image,
+  Flex,
+  Text,
+} from "@adobe/react-spectrum";
+import Info from "@spectrum-icons/workflow/Info";
+import Mailbox from "@spectrum-icons/workflow/Mailbox";
+import logo1 from "./images/logo1.png"; // First logo
+import logo2 from "./images/logo2.png"; // Second logo
+import logo3 from "./images/logo3.png"; // Third logo
 
 const darkThemeColors = {
-  background: '#00482B', // Dark Green
-  text: '#d69a00', // Gold for contrast
+  background: "#00482B", // Dark Green
+  text: "#d69a00", // Gold for contrast
 };
 
 function App() {
+  // Carousel state
+  const [currentLogo, setCurrentLogo] = useState(logo1);
+  const logos = [logo1, logo2, logo3]; // Array of logo images
+  let logoIndex = 0;
+
+  // Carousel effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      logoIndex = (logoIndex + 1) % logos.length; // Rotate through logos
+      setCurrentLogo(logos[logoIndex]);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
   return (
-    <Provider theme={defaultTheme} minHeight="100vh" UNSAFE_style={{ backgroundColor: darkThemeColors.background }}>
-      {/* Header Section */}
-      <View padding="size-400" UNSAFE_style={{
-        textAlign: 'center',
+    <Provider
+      theme={defaultTheme}
+      minHeight="100vh"
+      UNSAFE_style={{
+        backgroundColor: darkThemeColors.background,
         color: darkThemeColors.text,
-        padding: '4rem 1rem'
-      }}>
-        <Image 
-          width={500}
-          src={logo} 
-          alt="Team Logo" 
-          style={{ height: '50px', borderRadius: '50%' }}
-          justifySelf={'center'}
+      }}
+    >
+      {/* Header Section with Carousel */}
+      <View
+        padding="size-400"
+        UNSAFE_style={{ textAlign: "center", padding: "4rem 1rem" }}
+      >
+        <Image
+          src={currentLogo}
+          alt="Team Logo"
+          height="100px"
+          UNSAFE_style={{ borderRadius: "50%", marginBottom: "1rem" }}
         />
-        <Heading level={1} marginTop="size-100">
-          ______
-        </Heading>
-        <p>Pro Soccer Player for Portland | Anti-Bullying Advocate</p>
+        <Heading level={1}>Zac McGraw</Heading>
+        <Text>Pro Soccer Player for Portland | Anti-Bullying Advocate</Text>
       </View>
 
-      {/* Tabs with Icons */}
-      <Tabs aria-label="Zac McGraw Sections" UNSAFE_style={{ color: darkThemeColors.text }}>
+      {/* Tabs Section */}
+      <Tabs
+        aria-label="Zac McGraw Sections"
+        UNSAFE_style={{ marginTop: "2rem" }}
+      >
         <TabList>
           <Item key="about" textValue="About">
             <Info />
@@ -46,12 +82,61 @@ function App() {
         <TabPanels>
           <Item key="about">
             <View padding="size-200">
-              <Heading level={2}>About ______</Heading>
-              <p>
-                I’m ______, a professional soccer player for Portland. I’m passionate about supporting children who 
-                face challenges in school due to bullying. My goal is to build confidence and create a safe space for 
-                them through this initiative.
-              </p>
+              <Heading level={2}>About Zac McGraw</Heading>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                vel lacus nec elit tempor posuere. Phasellus eget augue eget
+                nisi aliquam tincidunt.
+              </Text>
+              {/* Two-by-Two Flex Layout */}
+              <Flex
+                direction="column"
+                gap="size-300"
+                marginX="size-800"
+                marginTop="size-500"
+              >
+                {/* Row 1: Text | Image */}
+                <Flex
+                  direction={{ base: "column", M: "row" }}
+                  gap="size-300"
+                  alignItems="center"
+                >
+                  <View flex>
+                    <Heading level={3}>Building Confidence</Heading>
+                    <Text>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Fusce eget feugiat elit.
+                    </Text>
+                  </View>
+                  <Image
+                    src={logo1}
+                    alt="Kids"
+                    height="200px"
+                    UNSAFE_style={{ borderRadius: "8px" }}
+                  />
+                </Flex>
+
+                {/* Row 2: Image | Text */}
+                <Flex
+                  direction={{ base: "column", M: "row" }}
+                  gap="size-300"
+                  alignItems="center"
+                >
+                  <Image
+                    src={logo2}
+                    alt="Team"
+                    height="200px"
+                    UNSAFE_style={{ borderRadius: "8px" }}
+                  />
+                  <View flex>
+                    <Heading level={3}>Supporting Community</Heading>
+                    <Text>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Curabitur vitae risus in sem tincidunt viverra.
+                    </Text>
+                  </View>
+                </Flex>
+              </Flex>
             </View>
           </Item>
           <Item key="form">
@@ -67,7 +152,7 @@ function App() {
                 title="Google Form"
                 style={{
                   border: `2px solid ${darkThemeColors.text}`,
-                  borderRadius: '8px',
+                  borderRadius: "8px",
                 }}
               >
                 Loading…
@@ -78,13 +163,14 @@ function App() {
       </Tabs>
 
       {/* Footer Section */}
-      <Footer UNSAFE_style={{
-        backgroundColor: '#003921',
-        padding: '2rem',
-        color: '#d69a00',
-        textAlign: 'center'
-      }}>
-        <p>&copy; 2025 ______ | All Rights Reserved</p>
+      <Footer
+        UNSAFE_style={{
+          backgroundColor: "#003921",
+          padding: "2rem",
+          textAlign: "center",
+        }}
+      >
+        <Text>&copy; 2025 Zac McGraw | All Rights Reserved</Text>
       </Footer>
     </Provider>
   );
