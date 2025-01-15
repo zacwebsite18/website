@@ -18161,56 +18161,148 @@ $parcel$ReactRefreshHelpers$2430.prelude(module);
 
 try {
 "use strict";
+function _typeof(o) {
+    "@babel/helpers - typeof";
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o) {
+        return typeof o;
+    } : function(o) {
+        return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+    }, _typeof(o);
+}
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports["default"] = void 0;
-var _react = _interopRequireDefault(require("2ffd86778554c8ea"));
+var _react = _interopRequireWildcard(require("2ffd86778554c8ea"));
 var _reactSpectrum = require("7d7f6c8565656b5e");
 var _Info = _interopRequireDefault(require("b1e4bba8891a20e4"));
 var _Mailbox = _interopRequireDefault(require("51bfd0fab73c055d"));
-var _logo = _interopRequireDefault(require("1025593e7fcfb5b4"));
+var _logo = _interopRequireDefault(require("82cb6f7f3297f8f4"));
+var _logo2 = _interopRequireDefault(require("cbcfe338eb6bb90a"));
+var _logo3 = _interopRequireDefault(require("d6a694545d935e71"));
 function _interopRequireDefault(e) {
     return e && e.__esModule ? e : {
         "default": e
     };
 }
-// Import the logo
+function _getRequireWildcardCache(e) {
+    if ("function" != typeof WeakMap) return null;
+    var r = new WeakMap(), t = new WeakMap();
+    return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+        return e ? t : r;
+    })(e);
+}
+function _interopRequireWildcard(e, r) {
+    if (!r && e && e.__esModule) return e;
+    if (null === e || "object" != _typeof(e) && "function" != typeof e) return {
+        "default": e
+    };
+    var t = _getRequireWildcardCache(r);
+    if (t && t.has(e)) return t.get(e);
+    var n = {
+        __proto__: null
+    }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var u in e)if ("default" !== u && ({}).hasOwnProperty.call(e, u)) {
+        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
+    }
+    return n["default"] = e, t && t.set(e, n), n;
+}
+function _slicedToArray(r, e) {
+    return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(r, a) {
+    if (r) {
+        if ("string" == typeof r) return _arrayLikeToArray(r, a);
+        var t = ({}).toString.call(r).slice(8, -1);
+        return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+    }
+}
+function _arrayLikeToArray(r, a) {
+    (null == a || a > r.length) && (a = r.length);
+    for(var e = 0, n = Array(a); e < a; e++)n[e] = r[e];
+    return n;
+}
+function _iterableToArrayLimit(r, l) {
+    var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+    if (null != t) {
+        var e, n, i, u, a = [], f = !0, o = !1;
+        try {
+            if (i = (t = t.call(r)).next, 0 === l) {
+                if (Object(t) !== t) return;
+                f = !1;
+            } else for(; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+        } catch (r) {
+            o = !0, n = r;
+        } finally{
+            try {
+                if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+            } finally{
+                if (o) throw n;
+            }
+        }
+        return a;
+    }
+}
+function _arrayWithHoles(r) {
+    if (Array.isArray(r)) return r;
+} // First logo
+// Second logo
+// Third logo
 var darkThemeColors = {
-    background: '#00482B',
+    background: "#00482B",
     // Dark Green
-    text: '#d69a00' // Gold for contrast
+    text: "#d69a00" // Gold for contrast
 };
 function App() {
+    // Carousel state
+    var _useState = (0, _react.useState)(_logo["default"]), _useState2 = _slicedToArray(_useState, 2), currentLogo = _useState2[0], setCurrentLogo = _useState2[1];
+    var logos = [
+        _logo["default"],
+        _logo2["default"],
+        _logo3["default"]
+    ]; // Array of logo images
+    var logoIndex = 0;
+    // Carousel effect
+    (0, _react.useEffect)(function() {
+        var interval = setInterval(function() {
+            logoIndex = (logoIndex + 1) % logos.length; // Rotate through logos
+            setCurrentLogo(logos[logoIndex]);
+        }, 3000); // Change every 3 seconds
+        return function() {
+            return clearInterval(interval);
+        }; // Cleanup on unmount
+    }, []);
     return /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Provider, {
         theme: _reactSpectrum.defaultTheme,
         minHeight: "100vh",
         UNSAFE_style: {
-            backgroundColor: darkThemeColors.background
+            backgroundColor: darkThemeColors.background,
+            color: darkThemeColors.text
         }
     }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.View, {
         padding: "size-400",
         UNSAFE_style: {
-            textAlign: 'center',
-            color: darkThemeColors.text,
-            padding: '4rem 1rem'
+            textAlign: "center",
+            padding: "4rem 1rem"
         }
     }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Image, {
-        width: 500,
-        src: _logo["default"],
+        src: currentLogo,
         alt: "Team Logo",
-        style: {
-            height: '50px',
-            borderRadius: '50%'
-        },
-        justifySelf: 'center'
+        height: "100px",
+        UNSAFE_style: {
+            borderRadius: "50%",
+            marginBottom: "1rem"
+        }
     }), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Heading, {
-        level: 1,
-        marginTop: "size-100"
-    }, "______"), /*#__PURE__*/ _react["default"].createElement("p", null, "Pro Soccer Player for Portland | Anti-Bullying Advocate")), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Tabs, {
+        level: 1
+    }, "Zac McGraw"), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Text, null, "Pro Soccer Player for Portland | Anti-Bullying Advocate")), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Tabs, {
         "aria-label": "Zac McGraw Sections",
         UNSAFE_style: {
-            color: darkThemeColors.text
+            marginTop: "2rem"
         }
     }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.TabList, null, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Item, {
         key: "about",
@@ -18224,7 +18316,48 @@ function App() {
         padding: "size-200"
     }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Heading, {
         level: 2
-    }, "About ______"), /*#__PURE__*/ _react["default"].createElement("p", null, "I\u2019m ______, a professional soccer player for Portland. I\u2019m passionate about supporting children who face challenges in school due to bullying. My goal is to build confidence and create a safe space for them through this initiative."))), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Item, {
+    }, "About Zac McGraw"), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Text, null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel lacus nec elit tempor posuere. Phasellus eget augue eget nisi aliquam tincidunt."), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Flex, {
+        direction: "column",
+        gap: "size-300",
+        marginX: "size-800",
+        marginTop: "size-500"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Flex, {
+        direction: {
+            base: "column",
+            M: "row"
+        },
+        gap: "size-300",
+        alignItems: "center"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.View, {
+        flex: true
+    }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Heading, {
+        level: 3
+    }, "Building Confidence"), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Text, null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget feugiat elit.")), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Image, {
+        src: _logo["default"],
+        alt: "Kids",
+        height: "200px",
+        UNSAFE_style: {
+            borderRadius: "8px"
+        }
+    })), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Flex, {
+        direction: {
+            base: "column",
+            M: "row"
+        },
+        gap: "size-300",
+        alignItems: "center"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Image, {
+        src: _logo2["default"],
+        alt: "Team",
+        height: "200px",
+        UNSAFE_style: {
+            borderRadius: "8px"
+        }
+    }), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.View, {
+        flex: true
+    }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Heading, {
+        level: 3
+    }, "Supporting Community"), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Text, null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus in sem tincidunt viverra.")))))), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Item, {
         key: "form"
     }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.View, {
         padding: "size-200"
@@ -18240,16 +18373,15 @@ function App() {
         title: "Google Form",
         style: {
             border: "2px solid ".concat(darkThemeColors.text),
-            borderRadius: '8px'
+            borderRadius: "8px"
         }
     }, "Loading\u2026"))))), /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Footer, {
         UNSAFE_style: {
-            backgroundColor: '#003921',
-            padding: '2rem',
-            color: '#d69a00',
-            textAlign: 'center'
+            backgroundColor: "#003921",
+            padding: "2rem",
+            textAlign: "center"
         }
-    }, /*#__PURE__*/ _react["default"].createElement("p", null, "\xA9 2025 ______ | All Rights Reserved")));
+    }, /*#__PURE__*/ _react["default"].createElement(_reactSpectrum.Text, null, "\xA9 2025 Zac McGraw | All Rights Reserved")));
 }
 _c = App;
 var _default = exports["default"] = App;
@@ -18261,7 +18393,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"2ffd86778554c8ea":"21dqq","7d7f6c8565656b5e":"ad2WR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","b1e4bba8891a20e4":"imdR9","51bfd0fab73c055d":"arCOt","1025593e7fcfb5b4":"8LKIW"}],"ad2WR":[function(require,module,exports,__globalThis) {
+},{"2ffd86778554c8ea":"21dqq","7d7f6c8565656b5e":"ad2WR","b1e4bba8891a20e4":"imdR9","51bfd0fab73c055d":"arCOt","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","82cb6f7f3297f8f4":"9XODk","cbcfe338eb6bb90a":"e2fA1","d6a694545d935e71":"3UW4G"}],"ad2WR":[function(require,module,exports,__globalThis) {
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -107317,7 +107449,121 @@ var _react = require("react");
     };
 }
 
-},{"@react-aria/dnd":"jTxCT","@react-stately/dnd":"kKJSm","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports,__globalThis) {
+},{"@react-aria/dnd":"jTxCT","@react-stately/dnd":"kKJSm","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"imdR9":[function(require,module,exports,__globalThis) {
+"use strict";
+var _interopRequireDefault = require("ab4ebe2ec420b2af");
+exports.__esModule = true;
+exports.default = Info;
+var _Info = require("9e427bfa5d6c02b0");
+var _icon = require("618cada3827b52b4");
+var _react = _interopRequireDefault(require("c5d00a444dcf932c"));
+function Info(props) {
+    return /*#__PURE__*/ _react.default.createElement(_icon.Icon, props, /*#__PURE__*/ _react.default.createElement(_Info.A4uInfo, null));
+}
+
+},{"ab4ebe2ec420b2af":"7XM86","9e427bfa5d6c02b0":"eMOBW","618cada3827b52b4":"84IWC","c5d00a444dcf932c":"21dqq"}],"eMOBW":[function(require,module,exports,__globalThis) {
+/**
+Copyright 2024 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+**/ "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.A4uInfo = A4uInfo;
+var _react = _interopRequireDefault(require("69020c8cd5011999"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+function A4uInfo(_ref) {
+    var props = _extends({}, _ref);
+    return /*#__PURE__*/ _react["default"].createElement("svg", _extends({
+        viewBox: "0 0 36 36"
+    }, props, props), /*#__PURE__*/ _react["default"].createElement("path", {
+        fillRule: "evenodd",
+        d: "M18,2A16,16,0,1,0,34,18,16,16,0,0,0,18,2Zm-.3,4.3a2.718,2.718,0,0,1,2.864,2.824A2.664,2.664,0,0,1,17.7,11.987a2.705,2.705,0,0,1-2.864-2.864A2.717,2.717,0,0,1,17.7,6.3ZM22,27a1,1,0,0,1-1,1H15a1,1,0,0,1-1-1V25a1,1,0,0,1,1-1h1V18H15a1,1,0,0,1-1-1V15a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v9h1a1,1,0,0,1,1,1Z"
+    }));
+}
+
+},{"69020c8cd5011999":"21dqq"}],"arCOt":[function(require,module,exports,__globalThis) {
+"use strict";
+var _interopRequireDefault = require("39ffc9b73a6a8115");
+exports.__esModule = true;
+exports.default = Mailbox;
+var _Mailbox = require("8d96a8425a0986e");
+var _icon = require("521dd1404a11f4d3");
+var _react = _interopRequireDefault(require("e4a2b06794765e5"));
+function Mailbox(props) {
+    return /*#__PURE__*/ _react.default.createElement(_icon.Icon, props, /*#__PURE__*/ _react.default.createElement(_Mailbox.A4uMailbox, null));
+}
+
+},{"39ffc9b73a6a8115":"7XM86","8d96a8425a0986e":"339Le","521dd1404a11f4d3":"84IWC","e4a2b06794765e5":"21dqq"}],"339Le":[function(require,module,exports,__globalThis) {
+/**
+Copyright 2024 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+**/ "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.A4uMailbox = A4uMailbox;
+var _react = _interopRequireDefault(require("8b21c0268adcf34c"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+function A4uMailbox(_ref) {
+    var props = _extends({}, _ref);
+    return /*#__PURE__*/ _react["default"].createElement("svg", _extends({
+        viewBox: "0 0 36 36"
+    }, props, props), /*#__PURE__*/ _react["default"].createElement("path", {
+        fillRule: "evenodd",
+        d: "M5,8a5,5,0,0,0-5,5V29a1,1,0,0,0,1,1H12V13A5,5,0,0,0,7,8Z"
+    }), /*#__PURE__*/ _react["default"].createElement("path", {
+        fillRule: "evenodd",
+        d: "M31,8H18v7a1,1,0,0,1-1,1H14V30H35a1,1,0,0,0,1-1V13A5,5,0,0,0,31,8Z"
+    }), /*#__PURE__*/ _react["default"].createElement("path", {
+        fillRule: "evenodd",
+        d: "M21,0H15a1,1,0,0,0-1,1V14h2V6h5a1,1,0,0,0,1-1V1A1,1,0,0,0,21,0Z"
+    }));
+}
+
+},{"8b21c0268adcf34c":"21dqq"}],"km3Ru":[function(require,module,exports,__globalThis) {
 "use strict";
 var Refresh = require("7422ead32dcc1e6b");
 var { version } = require("630b62916b1ae0e7");
@@ -107462,124 +107708,10 @@ function registerExportsForReactRefresh(module1) {
 },{"7422ead32dcc1e6b":"786KC","630b62916b1ae0e7":"4SQxb"}],"4SQxb":[function(require,module,exports,__globalThis) {
 module.exports = JSON.parse("{\"name\":\"react-refresh\",\"description\":\"React is a JavaScript library for building user interfaces.\",\"keywords\":[\"react\"],\"version\":\"0.14.2\",\"homepage\":\"https://reactjs.org/\",\"bugs\":\"https://github.com/facebook/react/issues\",\"license\":\"MIT\",\"files\":[\"LICENSE\",\"README.md\",\"babel.js\",\"runtime.js\",\"cjs/\",\"umd/\"],\"main\":\"runtime.js\",\"exports\":{\".\":\"./runtime.js\",\"./runtime\":\"./runtime.js\",\"./babel\":\"./babel.js\",\"./package.json\":\"./package.json\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/facebook/react.git\",\"directory\":\"packages/react\"},\"engines\":{\"node\":\">=0.10.0\"},\"devDependencies\":{\"react-16-8\":\"npm:react@16.8.0\",\"react-dom-16-8\":\"npm:react-dom@16.8.0\",\"scheduler-0-13\":\"npm:scheduler@0.13.0\"}}");
 
-},{}],"imdR9":[function(require,module,exports,__globalThis) {
-"use strict";
-var _interopRequireDefault = require("ab4ebe2ec420b2af");
-exports.__esModule = true;
-exports.default = Info;
-var _Info = require("9e427bfa5d6c02b0");
-var _icon = require("618cada3827b52b4");
-var _react = _interopRequireDefault(require("c5d00a444dcf932c"));
-function Info(props) {
-    return /*#__PURE__*/ _react.default.createElement(_icon.Icon, props, /*#__PURE__*/ _react.default.createElement(_Info.A4uInfo, null));
-}
+},{}],"9XODk":[function(require,module,exports,__globalThis) {
+module.exports = require("7c98ff8c8da845df").getBundleURL('byUka') + "logo1.45a90a3e.png" + "?" + Date.now();
 
-},{"ab4ebe2ec420b2af":"7XM86","9e427bfa5d6c02b0":"eMOBW","618cada3827b52b4":"84IWC","c5d00a444dcf932c":"21dqq"}],"eMOBW":[function(require,module,exports,__globalThis) {
-/**
-Copyright 2024 Adobe. All rights reserved.
-This file is licensed to you under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-**/ "use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.A4uInfo = A4uInfo;
-var _react = _interopRequireDefault(require("69020c8cd5011999"));
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        "default": obj
-    };
-}
-function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function(target) {
-        for(var i = 1; i < arguments.length; i++){
-            var source = arguments[i];
-            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-        }
-        return target;
-    };
-    return _extends.apply(this, arguments);
-}
-function A4uInfo(_ref) {
-    var props = _extends({}, _ref);
-    return /*#__PURE__*/ _react["default"].createElement("svg", _extends({
-        viewBox: "0 0 36 36"
-    }, props, props), /*#__PURE__*/ _react["default"].createElement("path", {
-        fillRule: "evenodd",
-        d: "M18,2A16,16,0,1,0,34,18,16,16,0,0,0,18,2Zm-.3,4.3a2.718,2.718,0,0,1,2.864,2.824A2.664,2.664,0,0,1,17.7,11.987a2.705,2.705,0,0,1-2.864-2.864A2.717,2.717,0,0,1,17.7,6.3ZM22,27a1,1,0,0,1-1,1H15a1,1,0,0,1-1-1V25a1,1,0,0,1,1-1h1V18H15a1,1,0,0,1-1-1V15a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v9h1a1,1,0,0,1,1,1Z"
-    }));
-}
-
-},{"69020c8cd5011999":"21dqq"}],"arCOt":[function(require,module,exports,__globalThis) {
-"use strict";
-var _interopRequireDefault = require("39ffc9b73a6a8115");
-exports.__esModule = true;
-exports.default = Mailbox;
-var _Mailbox = require("8d96a8425a0986e");
-var _icon = require("521dd1404a11f4d3");
-var _react = _interopRequireDefault(require("e4a2b06794765e5"));
-function Mailbox(props) {
-    return /*#__PURE__*/ _react.default.createElement(_icon.Icon, props, /*#__PURE__*/ _react.default.createElement(_Mailbox.A4uMailbox, null));
-}
-
-},{"39ffc9b73a6a8115":"7XM86","8d96a8425a0986e":"339Le","521dd1404a11f4d3":"84IWC","e4a2b06794765e5":"21dqq"}],"339Le":[function(require,module,exports,__globalThis) {
-/**
-Copyright 2024 Adobe. All rights reserved.
-This file is licensed to you under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-**/ "use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.A4uMailbox = A4uMailbox;
-var _react = _interopRequireDefault(require("8b21c0268adcf34c"));
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        "default": obj
-    };
-}
-function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function(target) {
-        for(var i = 1; i < arguments.length; i++){
-            var source = arguments[i];
-            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-        }
-        return target;
-    };
-    return _extends.apply(this, arguments);
-}
-function A4uMailbox(_ref) {
-    var props = _extends({}, _ref);
-    return /*#__PURE__*/ _react["default"].createElement("svg", _extends({
-        viewBox: "0 0 36 36"
-    }, props, props), /*#__PURE__*/ _react["default"].createElement("path", {
-        fillRule: "evenodd",
-        d: "M5,8a5,5,0,0,0-5,5V29a1,1,0,0,0,1,1H12V13A5,5,0,0,0,7,8Z"
-    }), /*#__PURE__*/ _react["default"].createElement("path", {
-        fillRule: "evenodd",
-        d: "M31,8H18v7a1,1,0,0,1-1,1H14V30H35a1,1,0,0,0,1-1V13A5,5,0,0,0,31,8Z"
-    }), /*#__PURE__*/ _react["default"].createElement("path", {
-        fillRule: "evenodd",
-        d: "M21,0H15a1,1,0,0,0-1,1V14h2V6h5a1,1,0,0,0,1-1V1A1,1,0,0,0,21,0Z"
-    }));
-}
-
-},{"8b21c0268adcf34c":"21dqq"}],"8LKIW":[function(require,module,exports,__globalThis) {
-module.exports = require("1db6b4538fcad9ca").getBundleURL('byUka') + "logo.c493797d.png" + "?" + Date.now();
-
-},{"1db6b4538fcad9ca":"lgJ39"}],"lgJ39":[function(require,module,exports,__globalThis) {
+},{"7c98ff8c8da845df":"lgJ39"}],"lgJ39":[function(require,module,exports,__globalThis) {
 "use strict";
 var bundleURL = {};
 function getBundleURLCached(id) {
@@ -107614,6 +107746,12 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}]},["aQL8O","7qMjn","d8Dch"], "d8Dch", "parcelRequire94c2")
+},{}],"e2fA1":[function(require,module,exports,__globalThis) {
+module.exports = require("b1a35a0ddc9bb780").getBundleURL('byUka') + "logo2.0b6375f9.png" + "?" + Date.now();
+
+},{"b1a35a0ddc9bb780":"lgJ39"}],"3UW4G":[function(require,module,exports,__globalThis) {
+module.exports = require("5d5b7301a93c68f9").getBundleURL('byUka') + "logo3.804563cf.png" + "?" + Date.now();
+
+},{"5d5b7301a93c68f9":"lgJ39"}]},["aQL8O","7qMjn","d8Dch"], "d8Dch", "parcelRequire94c2")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
